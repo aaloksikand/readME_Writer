@@ -24,87 +24,86 @@ inquirer
   .prompt([
     {
       type: 'input',
-      name: 'projectTitle',
-      message: 'What is your project title?',  //See Acceptance Criteria: "WHEN I enter my project title..."
+      message: 'What is your project title?',
+      name: 'projectTitle',  //See Acceptance Criteria: "WHEN I enter my project title..."
     },
     {
       type: 'input',
-      name: 'description',
       message: 'Please enter a short description of your project.',  //See Acceptance Criteria: "// WHEN I enter a description . . ."
+      name: 'description',
+      
     },
     {
       type: 'input',
-      name: 'installationInstructions', //See Acceptance Criteria: ". . . WHEN I enter installation instructions . . .""
       message: 'Please enter your project installation instructions here.',
-    },
+      name: 'installationInstructions', //See Acceptance Criteria: ". . . WHEN I enter installation instructions . . .""
+      },
     {
       type: 'input',
-      name: 'usageInformation',  // WHEN I enter . . . usage information . . .""
       message: 'Please enter your project usage information here.',
-    },
+      name: 'usageInformation',  // WHEN I enter . . . usage information . . .""
+      },
     {
       type: 'input',
-      name: 'contributionGuidelines', // WHEN I enter . . .contribution guidelines . . .
       message: 'Please enter your project contribution guidelines here.',  // WHEN I enter . . . contribution guidelines 
-    },
+      name: 'contributionGuidelines', // WHEN I enter . . .contribution guidelines . . .
+      },
     {
       type: 'input',
-      name: 'testInstructions',  // WHEN I enter . . . test instructions
       message: 'Please enter your project test instructions here.',
-    },
+      name: 'testInstructions',  // WHEN I enter . . . test instructions
+      },
     {
       type: 'checkbox',
-      name: 'licenseChoice',
       message: 'Please choose a license for your application from the following list of options.',  // WHEN I choose a license for my application from a list of options
+      name: 'licenseChoice',
     },
     {
       type: 'input',
+      message: 'Please enter your Github username.',
       name: 'githubUrl',
-      message: "Please enter your Github username."
+      
     },  
     {
       type: 'input',
-      name: 'emailAddress',
       message: 'Please enter your email address.',
+      name: 'emailAddress',
     }
-  ]);
+  ])
 
 //TODO: Create a function to write README file
-const generateReadme = ({projectTitle, description, installationInstructions, usageInformation, contributionGuidelines, testInstructions }) => // WHEN I enter a description, installation instructions, usage information, contribution guidelines, and test instructions
+
+.then((data) => {
+  const filename = `${data.projectTitle.toLowerCase().split('').join('')}.MD`; //Bonus using writeFileSync as a promise
+})
+
+const generateReadme = 
   `<!DOCTYPE MD>
-#${projectTitle}
+#${data.projectTitle}
 ##Project Description
-${description}
+${data.description}
 ##Table of Contents
 ##Installation
-${installationInstructions}
+${data.installationInstructions}
 ##Usage
-${usageInformation}
+${data.usageInformation}
 ##License
-${licenseChoice}
+${data.licenseChoice}
 ##Contributing
-${contributionGuidelines}
+${data.contributionGuidelines}
 ##Tests
-${testInstructions}
+${data.testInstructions}
 ##Questions
-For additional questions, please contact ${githubURL} or ${emailAddress}.  Thank you.`
+For additional questions, please contact ${data.githubURL} or ${data.emailAddress}.  Thank you.`;
 
-//TODO: Create a function to initialize app
-//function init() {}
-const init() => {
-  promptUser()
-    // Use writeFileSync method to use promises instead of a callback function
-    .then((data) => {
-      const filename = `${data.projectTitle.toLowerCase().split('').join('')}.MD`; //Bonus using writeFileSync as a promise
-    })
-    .then((data) => fs.writeFileSync(filename, generateReadme(data)))
-    .then(() => console.log('Successfully wrote to filename))
-    .catch((err) => console.error(err));
-  generateReadme()
-};
+console.log(generateReadme)
+
+fs.writeFileSync(filename, generateReadme, (err) =>
+err ? console.log(err) : console.log('Success!')
+);
 
 //Function call to initialize app
-init();
+//init();
 
 
 //TODO: Create an array of questions for user input

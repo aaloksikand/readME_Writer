@@ -2,5 +2,23 @@
   "dependencies": {
     "fs": "^0.0.1-security",
     "inquirer": "^9.0.0"
-  }
+  },
+  "name": "readme_writer",
+  "description": "",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aaloksikand/readME_Writer.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aaloksikand/readME_Writer/issues"
+  },
+  "homepage": "https://github.com/aaloksikand/readME_Writer#readme"
 }
