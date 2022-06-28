@@ -50,9 +50,10 @@ inquirer
       name: 'testInstructions',  // WHEN I enter . . . test instructions
       },
     {
-      type: 'input',
+      type: 'checkbox',
       message: 'Please choose a license for your application from the following list of options.',  // WHEN I choose a license for my application from a list of options
       name: 'licenseChoice',
+      choices: ['Apache', 'The MIT License', 'Mozilla'],
     },
     {
       type: 'input',
@@ -78,15 +79,22 @@ err ? console.log(err) : console.log('Success!')
 )
 })
 }
-function generateReadme(data)
-{ 
+
 function displayBadge(licenseBadge){
-  //conditional if else running through different license badges
-  //if licenseBadge === display badge
-  //else if .....
+  if (licenseChoice = data.choice[0]) {
+    licenseBadge = '[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)]' //paste Apache here
+  }
+  else if (licenseChoice = data.choice[1]) {
+    licenseBadge = '[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)]' //paste MIT here
+  }
+  else if (licenseChoice = data.choice[2]) {
+    licenseBadge = '[![License: MPL 2.0](https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)]' //paste Mozilla here
+  }
 }
+function generateReadme(data)
+{
  return `<!DOCTYPE md>
-#${data.projectTitle} ${displayBadge(data.licensechoice)}
+#${data.projectTitle} ${displayBadge(licenseBadge)}
 ##Project Description
 ${data.description}
 ##Table of Contents
