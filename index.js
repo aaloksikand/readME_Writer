@@ -80,36 +80,52 @@ err ? console.log(err) : console.log('Success!')
 })
 }
 
-function displayBadge(licenseBadge){
-  if (licenseChoice = data.choice[0]) {
+function displayBadge(licenseChoice){
+  let licenseBadge;
+  if (licenseChoice = 'Apache') {
     licenseBadge = '[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)]' //paste Apache here
   }
-  else if (licenseChoice = data.choice[1]) {
+  else if (licenseChoice = 'The MIT License') {
     licenseBadge = '[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)]' //paste MIT here
   }
-  else if (licenseChoice = data.choice[2]) {
+  else if (licenseChoice = 'Mozilla') {
     licenseBadge = '[![License: MPL 2.0](https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)]' //paste Mozilla here
   }
+  return licenseBadge;
 }
 function generateReadme(data)
 {
- return `<!DOCTYPE md>
-#${data.projectTitle} ${displayBadge(licenseBadge)}
-##Project Description
+ return `# ${data.projectTitle} ${displayBadge(data.licenseChoice)}
+
+## Project Description
 ${data.description}
-##Table of Contents
-##Installation
+
+## Table of Contents
+
+* [Installation](#installation)
+* [Usage](#usage)
+* [License](#license)
+* [Contributing](#contributing)
+* [Tests](#tests)
+* [Questions](#questions)
+
+## Installation
 ${data.installationInstructions}
-##Usage
+
+## Usage
 ${data.usageInformation}
-##License
-${displaylienseBadge(data.licenseChoice)} 
-##Contributing
+
+## License
+${data.licenseChoice} 
+
+## Contributing
 ${data.contributionGuidelines}
-##Tests
+
+## Tests
 ${data.testInstructions}
-##Questions
-For additional questions, please contact ${data.githubURL} or ${data.emailAddress}.  Thank you.`;
+
+## Questions
+For additional questions, please contact ${data.githubUrl} or ${data.emailAddress}.  Thank you.`;
 }
 
 // console.log(generateReadme)
