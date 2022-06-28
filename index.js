@@ -1,86 +1,71 @@
-// TODO: Include packages needed for this application
-import inquirer from 'inquirer'; //AskBCS said that this version of inquirer requires import
-//const inquire =  require('inquirer');
-// Use writeFileSync method to use promises instead of a callback function
-//const fs = require('fs');
-import fs from 'fs';
 
-// THEN a high-quality, professional README.md is generated with the title of my project and sections entitled Description, Table of Contents, Installation, Usage, License, Contributing, Tests, and Questions
-// WHEN I choose a license for my application from a list of options
-// THEN a badge for that license is added near the top of the README and a notice is added to the section of the README entitled License that explains which license the application is covered under
-// WHEN I enter my GitHub username
-// THEN this is added to the section of the README entitled Questions, with a link to my GitHub profile
-// WHEN I enter my email address
-// THEN this is added to the section of the README entitled Questions, with instructions on how to reach me with additional questions
-// WHEN I click on the links in the Table of Contents
-// THEN I am taken to the corresponding section of the README
-function init()
+import inquirer from 'inquirer'; //Importing inquirer according to updated version of inquirer requirements
+
+import fs from 'fs'; //Importing fs
+
+function init() //creating the init function
 {
-inquirer
+inquirer  //using the inqurer prompt
   .prompt([
     {
-      type: 'input',
+      type: 'input',  //user input for Project Title
       message: 'What is your project title?',
       name: 'projectTitle',  //See Acceptance Criteria: "WHEN I enter my project title..."
     },
     {
-      type: 'input',
+      type: 'input', //user input for Description
       message: 'Please enter a short description of your project.',  //See Acceptance Criteria: "// WHEN I enter a description . . ."
       name: 'description',
-      
     },
     {
-      type: 'input',
+      type: 'input',  //user input for Installation Instructions
       message: 'Please enter your project installation instructions here.',
       name: 'installationInstructions', //See Acceptance Criteria: ". . . WHEN I enter installation instructions . . .""
       },
     {
-      type: 'input',
+      type: 'input',  //user input for project usage
       message: 'Please enter your project usage information here.',
       name: 'usageInformation',  // WHEN I enter . . . usage information . . .""
       },
     {
-      type: 'input',
+      type: 'input',  //user input for contribution guidelines
       message: 'Please enter your project contribution guidelines here.',  // WHEN I enter . . . contribution guidelines 
       name: 'contributionGuidelines', // WHEN I enter . . .contribution guidelines . . .
       },
     {
-      type: 'input',
+      type: 'input',  //user input for project test instructions
       message: 'Please enter your project test instructions here.',
       name: 'testInstructions',  // WHEN I enter . . . test instructions
       },
     {
-      type: 'checkbox',
+      type: 'checkbox',  //checkbox input for different license choices
       message: 'Please choose a license for your application from the following list of options.',  // WHEN I choose a license for my application from a list of options
       name: 'licenseChoice',
       choices: ['Apache', 'The MIT License', 'Mozilla'],
     },
     {
-      type: 'input',
+      type: 'input',  //github username
       message: 'Please enter your Github username.',
       name: 'githubUrl',
       
     },  
     {
-      type: 'input',
+      type: 'input',  //email address
       message: 'Please enter your email address.',
       name: 'emailAddress',
     }
   ])
 
-//TODO: Create a function to write README file
-
 .then((data) => {
-  const filename = `${data.projectTitle.toLowerCase().split('').join('')}.md`; //Bonus using writeFileSync as a promise
+  const filename = `${data.projectTitle.toLowerCase().split('').join('')}.md`; //Generates readme.md file using project title as a name
   const readMe = generateReadme(data);
   fs.writeFileSync(filename, readMe, (err) =>
 err ? console.log(err) : console.log('Success!')
-  //console.log(readMe);
 )
 })
 }
 
-function displayBadge(licenseChoice){
+function displayBadge(licenseChoice){  //displaybadge function depending on user choice of Apache, MIT or Mozilla
   let licenseBadge;
   if (licenseChoice = 'Apache') {
     licenseBadge = '[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)]' //paste Apache here
@@ -125,21 +110,11 @@ ${data.contributionGuidelines}
 ${data.testInstructions}
 
 ## Questions
-For additional questions, please contact ${data.githubUrl} or ${data.emailAddress}.  Thank you.`;
+For additional questions, please contact https://www.github.com/${data.githubUrl} or ${data.emailAddress}.  Thank you.`;
 }
 
-// console.log(generateReadme)
-
-// fs.writeFileSync(filename, readMe, (err) =>
-// err ? console.log(err) : console.log('Success!')
-//);
-
-//Function call to initialize app
 init();
 
-
-//TODO: Create an array of questions for user input
-//const questions = [];
 
 
 
